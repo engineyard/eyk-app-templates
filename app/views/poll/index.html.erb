@@ -1,19 +1,17 @@
 <h2>Ruby Instant Poll</h2>
 <h3>What is your favorite weekend activity?</h3>
 
-<% if @choice.choice %>
+<% if @choice %>
   Thanks for participating!<br/><br/>
-  <div style="color: #A9A9A9">
-  You chose <span style="color: #8FC0F1"><%=@choice.choice%></span>.<br/>
+  You chose <span style="color: #3526f0"><%=@choice.choice%></span>.<br/>
   Overall results:<br/>
-  </div>
-  <hr/>
-
   <% @choices.each do |choice| %>
     <pre><%=choice.item.rjust(10, ' ')%>: <%=choice.count%></pre>
   <% end %>
 
-<% else %>
+<% else
+     @choice = Poll.new 
+%>
   <%= form_for @choice, url: '/poll/index' do |f| %>
     <% @choices.each do |choice| %>
       <%= f.radio_button :choice, choice.item %> 
