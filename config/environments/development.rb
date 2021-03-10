@@ -60,24 +60,4 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.require_master_key = true
-
-  #config.logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
-  # Using Semantic Logger for now
-  # Similar to Heroku, we need logging to go to STDOUT to get picked up by platform
-  config.log_tags = {
-    request_id: :request_id,
-    ip:         :remote_ip
-  }
-  config.colorize_logging = true
-
-  config.rails_semantic_logger.semantic   = true
-  config.rails_semantic_logger.started    = false
-  config.rails_semantic_logger.processing = false
-  config.rails_semantic_logger.rendered   = false
-
-  STDOUT.sync = true
-  config.rails_semantic_logger.add_file_appender = false
-  config.semantic_logger.add_appender(io: STDOUT, level: config.log_level, formatter: config.rails_semantic_logger.format)
-
-
 end
