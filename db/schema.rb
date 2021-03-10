@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_28_195546) do
+ActiveRecord::Schema.define(version: 2021_03_09_220407) do
 
-  create_table "polls", force: :cascade do |t|
+  create_table "answers", force: :cascade do |t|
+    t.integer "poll_id"
     t.string "item"
     t.integer "count"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.string "name"
+    t.string "choice_one"
+    t.string "choice_two"
+    t.string "choice_three"
+    t.string "choice_four"
   end
 
 end
