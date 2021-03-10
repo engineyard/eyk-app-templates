@@ -1,11 +1,12 @@
 class PollController < ApplicationController
     def index
-        if params["poll"]
-            @choice = Poll.new(params.require(:poll).permit(:choice))
-            choice = Poll.find_by(item: @choice.choice)
+        @poll = Poll.find(1)
+        if params["answer"]
+            @answer = Answer.new(params.require(:answer).permit(:choice))
+            choice = Answer.find_by(item: @answer.choice)
             choice.count = choice.count + 1
             choice.save
         end
-        @choices = Poll.all
+        @answers = Answer.all
     end
 end

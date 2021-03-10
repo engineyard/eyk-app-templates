@@ -1,21 +1,25 @@
-<h2>Ruby Instant Poll</h2>
-<h3>What is your favorite weekend activity?</h3>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<% if @choice %>
+<h2>Ruby Instant Poll</h2>
+<h3><%= @poll.name %></h3>
+
+<% if @answer %>
   Thanks for participating!<br/><br/>
-  You chose <span style="color: #3526f0"><%=@choice.choice%></span>.<br/>
+  You chose <span style="color: #3526f0"><%=@answer.choice%></span>.<br/>
   Overall results:<br/>
-  <% @choices.each do |choice| %>
-    <pre><%=choice.item.rjust(10, ' ')%>: <%=choice.count%></pre>
+  <% @answers.each do |answer| %>
+    <pre><%=answer.item.rjust(10, ' ')%>: <%=answer.count%></pre>
   <% end %>
 
 <% else
-     @choice = Poll.new 
+     @answer = Answer.new 
 %>
-  <%= form_for @choice, url: '/poll/index' do |f| %>
-    <% @choices.each do |choice| %>
-      <%= f.radio_button :choice, choice.item %> 
-      <%= f.label :choice, choice.item, :value => choice.item %><br/>
+  <%= form_for @answer, url: '/poll/index' do |f| %>
+    <% @answers.each do |answer| %>
+      <%= f.radio_button :choice, answer.item %> 
+      <%= f.label :choice, answer.item, :value => answer.item %><br/>
     <% end %>
     <br/>
     <%= f.submit "Submit" %>
