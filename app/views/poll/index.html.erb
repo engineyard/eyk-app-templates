@@ -2,27 +2,62 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<h2>Ruby Instant Poll</h2>
-<h3><%= @poll.name %></h3>
-
 <% if @answer %>
-  Thanks for participating!<br/><br/>
-  You chose <span style="color: #3526f0"><%=@answer.choice%></span>.<br/>
-  Overall results:<br/>
-  <% @answers.each do |answer| %>
-    <pre><%=answer.item.rjust(10, ' ')%>: <%=answer.count%></pre>
-  <% end %>
+  <div class="col-md-3" style="padding-top: 10px">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span class="glyphicon glyphicon-hand-right"></span>&nbsp;You chose <span style="font-weight: bold"><%=@answer.choice%></span>.
+            Overall results:<br/>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <% @answers.each do |answer| %>
+              <li class="list-group-item">
+                <div>
+                  <label><%=answer.item.rjust(10, ' ')%>: <%=answer.count%></label>
+                </div>
+              </li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="panel-footer text-center">Thanks for participating!</div>
+  </div>
+  </div>
 
 <% else
+     # No selection was made, display the form
      @answer = Answer.new 
 %>
-  <%= form_for @answer, url: '/poll/index' do |f| %>
-    <% @answers.each do |answer| %>
-      <%= f.radio_button :choice, answer.item %> 
-      <%= f.label :choice, answer.item, :value => answer.item %><br/>
-    <% end %>
-    <br/>
-    <%= f.submit "Submit" %>
+<%= form_for @answer, url: '/poll/index' do |f| %>
+  <div class="col-md-3" style="padding-top: 10px">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span class="glyphicon glyphicon-hand-right"></span>&nbsp;<%= @poll.name %>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <% @answers.each do |answer| %>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <label>
+                    <%= f.radio_button :choice, answer.item %> 
+                    <%= answer.item %>
+                  </label>
+                </div>
+              </li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="panel-footer text-center">
+      <%= f.submit "Vote", :class => 'btn btn-primary btn-block btn-sm' %>
+    </div>
+  </div>
+  </div>
   <% end %>
 <% end %>
+
 	
