@@ -15,7 +15,10 @@ class PollController < ApplicationController
         @poll = Poll.find(1)
         @answers = Answer.all
         
-        ReportWorker.perform_async
+        # Native Sidekiq
+        #ReportWorker.perform_async
+        # Sidekiq using ActiveJobs
+        ReportJob.perform_later
 
         render 'index'
     end 
