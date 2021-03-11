@@ -21,10 +21,6 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  pool: <%= ENV.fetch("db_pool_size") { 5 } %>
-  username: <%= ENV.fetch("db_yml_username") %>
-  password: <%= ENV.fetch("db_yml_password") %>
-  host: <%= ENV.fetch("db_yml_host") %>
-  database: <%= ENV.fetch("db_yml_database") %>
+  <<: *default
+  database: db/production.sqlite3
+

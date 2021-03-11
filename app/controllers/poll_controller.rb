@@ -9,4 +9,14 @@ class PollController < ApplicationController
         end
         @answers = Answer.all
     end
+
+    def report 
+        puts "Run the report"
+        @poll = Poll.find(1)
+        @answers = Answer.all
+        
+        ReportWorker.perform_async
+
+        render 'index'
+    end 
 end
