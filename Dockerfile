@@ -23,17 +23,14 @@ RUN gem install bundler && bundle install --jobs 20 --retry 5
 # Copy the main application.
 COPY . ./
 
+# Get cronenberg
+RUN wget https://github.com/ess/cronenberg/releases/download/v1.0.0/cronenberg-v1.0.0-linux-amd64 -O /usr/bin/cronenberg && chmod +x /usr/bin/cronenberg
+
 # Arguments used for database connection information and creds
 ARG db_yml_database
 ARG db_yml_username
 ARG db_yml_password
 ARG db_yml_host
-
-# Uncomment this line if you want EYK to generate your Postgres
-# database yaml config file
-#RUN erb -T - ./.eyk/config/database.yml.erb > config/database.yml
-
-RUN erb -T - ./.eyk/config/sidekiq.yml.erb > config/sidekiq.yml
 
 # Make the migration script runable
 RUN chmod +x ./.eyk/migrations/db-migrate.sh

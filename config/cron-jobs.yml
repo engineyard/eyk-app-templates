@@ -1,0 +1,3 @@
+- name: what-am-i
+  command: echo "I am a command"
+  when: "* * * * *"
