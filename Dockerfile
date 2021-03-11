@@ -2,7 +2,7 @@ FROM engineyard/kontainers:ruby-2.6-v1.0.0
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update -qq && apt install -y sqlite3 libsqlite3-dev yarn
+RUN apt-get update -qq && apt install -y sqlite3 libsqlite3-dev yarn wget
 
 # Configure the main working directory. This is the base
 # directory used in any further RUN, COPY, and ENTRYPOINT commands.
