@@ -33,7 +33,9 @@ ARG db_yml_host
 # database yaml config file
 #RUN erb -T - ./.eyk/config/database.yml.erb > config/database.yml
 
-RUN erb -T - ./.eyk/config/sidekiq.yml.erb > config/sidekiq.yml
+# Uncomment this line if you want EYK to generate your Sidekiq
+# yaml config file
+#RUN erb -T - ./.eyk/config/sidekiq.yml.erb > config/sidekiq.yml
 
 # Make the migration script runable
 RUN chmod +x ./.eyk/migrations/db-migrate.sh
