@@ -1,20 +1,28 @@
 # Templates for EYK Applications
 
-The master branch is a simple web app using a sqlite3 database.
-This can be used as a starter template.
-Be sure to do the following before deploying:
+The webapp-with-jobs branch shows how you can use Sidekiq
+to run on-demand or scheduled asynchronous processes.
+
+See the article https://www.devgraph.com/2021/03/15/running-background-jobs-in-ruby-on-rails-containers/
+for more details on how to use Sidekiq with the Rails
+ActiveJob mechanism.
+
+Note that the Procfile has a second entry
 ```
-bin/rails credentials:edit
+sidekiq: bundle exec sidekiq
 ```
-Take the key value from the generated config/master.key and use it as follows:
+Be aware that when you deploy an application with more than
+one entry in the Procfile, EYK will set the scale to any
+non-web process types to zero by default. Thus, to start
+your Sidekiq process, run the following command:
 ```
-eyk config:set RAILS_MASTER_KEY=<value>
-eyk config:set DEIS_DOCKER_BUILD_ARGS_ENABLED=1
+eyk ps:scale sidekiq=1
 ```
-Note that your .gitignore should prevent you from checking in the config/master.key
-Also set the key value in your development environment as follows (i.e. for bash):
+You will also need to configure the REDIS url so that
+Sidekiq can connect. The easiest way to do this is to
+use an application config environment variable.
+You can se this using the following command:
 ```
-export RAILS_MASTER_KEY=<value>
-export DEIS_DOCKER_BUILD_ARGS_ENABLED=1
+eyk config:set REDIS_URL=redis://my.host.name:6379
 ```
 
