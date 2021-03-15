@@ -1,20 +1,21 @@
 # Templates for EYK Applications
 
-The master branch is a simple web app using a sqlite3 database.
-This can be used as a starter template.
-Be sure to do the following before deploying:
+The webapp-with-jobs branch shows how you can use Cronenberg
+to run scheduled operating system level processes within
+your container.
+
+See the article https://www.devgraph.com/2021/03/15/running-background-jobs-in-ruby-on-rails-containers/
+for more details on how to use Cronenberg in your container.
+
+Note that the Procfile has a second entry
 ```
-bin/rails credentials:edit
+cronenberg: cronenberg ./config/cron-jobs.yml
 ```
-Take the key value from the generated config/master.key and use it as follows:
+Be aware that when you deploy an application with more than
+one entry in the Procfile, EYK will set the scale to any
+non-web process types to zero by default. Thus, to start
+your Sidekiq process, run the following command:
 ```
-eyk config:set RAILS_MASTER_KEY=<value>
-eyk config:set DEIS_DOCKER_BUILD_ARGS_ENABLED=1
-```
-Note that your .gitignore should prevent you from checking in the config/master.key
-Also set the key value in your development environment as follows (i.e. for bash):
-```
-export RAILS_MASTER_KEY=<value>
-export DEIS_DOCKER_BUILD_ARGS_ENABLED=1
+eyk ps:scale cronenberg=1
 ```
 
