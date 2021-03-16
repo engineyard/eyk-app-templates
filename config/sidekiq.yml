@@ -5,9 +5,3 @@
 
 :queues:
   - default
-
-:schedule:
-  ReportJob:
-    cron: '1 * * * *'
-    queue: default
-    enabled: true
