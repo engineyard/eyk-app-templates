@@ -1,5 +1,17 @@
 class PollController < ApplicationController
+
+    before_action :authenticate_user!
+
     def index
+        # TODO Devise testing
+        puts "User signed in: #{user_signed_in?}"
+        if user_signed_in?
+            my_user = current_user 
+            my_session = user_session
+            puts "My user: #{current_user.inspect}"
+            puts "My session: #{my_session.inspect}"
+        end 
+
         @poll = Poll.find(1)
         if params["answer"]
             @answer = Answer.new(params.require(:answer).permit(:choice))
