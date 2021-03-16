@@ -15,7 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 
 gem 'mysql2'
-
+gem 'devise'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 
