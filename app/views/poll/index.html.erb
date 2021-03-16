@@ -1,92 +1,15 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 <div class="container">
 <main role="main" class="container">
 <div class="row">
-<% if @answer %>
-  <div class="col-md-3" style="padding-top: 10px">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <span class="glyphicon glyphicon-hand-right"></span>&nbsp;You chose <span style="font-weight: bold"><%=@answer.choice%></span>.
-            Overall results:<br/>
-        </h3>
-    </div>
-    <div class="panel-body">
-        <ul class="list-group">
-            <% @answers.each do |answer| %>
-              <li class="list-group-item">
-                <div>
-                  <label><%=answer.item.rjust(10, ' ')%>: <%=answer.count%></label>
-                </div>
-              </li>
-            <% end %>
-        </ul>
-    </div>
-    <div class="panel-footer text-center">Thanks for participating!</div>
-  </div>
-  </div>
 
-<% else
-     # No selection was made, display the form
-     @answer = Answer.new 
-%>
-<%= form_for @answer, url: '/poll/index' do |f| %>
-  <div class="col-md-3" style="padding-top: 10px">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <span class="glyphicon glyphicon-hand-right"></span>&nbsp;<%= @poll.name %>
-        </h3>
-    </div>
-    <div class="panel-body">
-        <ul class="list-group">
-            <% @answers.each do |answer| %>
-              <li class="list-group-item">
-                <div class="form-check">
-                  <label>
-                    <%= f.radio_button :choice, answer.item %> 
-                    <%= answer.item %>
-                  </label>
-                </div>
-              </li>
-            <% end %>
-        </ul>
-    </div>
-    <div class="panel-footer text-center">
-      <%= f.submit "Vote", :class => 'btn btn-primary btn-block btn-sm' %>
-    </div>
-  </div>
-  </div>
-  <% end %>
-<% end %>
+<%= render "lhs_column" %>
 
-<div class="col-md-8 blog-main">
-<h3 class="pb-3 mb-4 font-italic border-bottom">
-The Shed at Dulwich
-</h3>
-<div class="blog-post">
-  <h2 class="blog-post-title">How a Journalist Created the Number One Restaurant in London</h2>
-  <p class="blog-post-meta">March 16, 2021 by Anonymous</p>
+<%= render "article" %>
 
-  <p>The Shed at Dulwich was a fake restaurant created as a hoax by journalist Oobah Butler
-     for Vice magazine. It became the top-rated restaurant in London on TripAdvisor before
-     the listing was taken down.</p>
-  <p>The restaurant was located in a garden shed in Dulwich, London.. It was open 
-     only for one night in November 2017 where it did manage to serve ten guests,
-     including a couple from California.</p>
-  <p>The faux menu theme was "moods", and Butler photographed plates of food created
-     using household products including shaving foam and dishwasher tablets. An example
-     of a mood menu item was the following:</p>   
-  <blockquote>
-    <p>Empathetic: Vegan clams in a clear broth with parsnips, carrots, celery, and potatoes. Served with rye crisps.</p>
-  </blockquote>
-  <p>Information for this article was sourced from <a href=="https://en.wikipedia.org/wiki/The_Shed_at_Dulwich">Wikipedia</a>
-     and additional details can be found at
-     <a href="https://www.standard.co.uk/news/london/dulwich-shed-becomes-tripadvisor-s-number-one-ranked-restaurant-in-london-after-fake-reviews-a3712606.html">The Standard</a>.</p>
-</div><!-- /.blog-post -->
-</div><!-- /.blog-main -->
 </div><!-- /.row -->
 </div><!-- main -->
 </div><!-- container -->

@@ -1,0 +1,57 @@
+<% if @answer %>
+  <div class="col-md-3" style="padding-top: 10px">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span class="glyphicon glyphicon-hand-right"></span>&nbsp;You chose <span style="font-weight: bold"><%=@answer.choice%></span>.
+            Overall results:<br/>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <% @answers.each do |answer| %>
+              <li class="list-group-item">
+                <div>
+                  <label><%=answer.item.rjust(10, ' ')%>: <%=answer.count%></label>
+                </div>
+              </li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="panel-footer text-center">Thanks for participating!</div>
+  </div>
+  </div>
+
+<% else
+     # No selection was made, display the form
+     @answer = Answer.new 
+%>
+<%= form_for @answer, url: '/poll/index' do |f| %>
+  <div class="col-md-3" style="padding-top: 10px">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span class="glyphicon glyphicon-hand-right"></span>&nbsp;<%= @poll.name %>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <% @answers.each do |answer| %>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <label>
+                    <%= f.radio_button :choice, answer.item %> 
+                    <%= answer.item %>
+                  </label>
+                </div>
+              </li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="panel-footer text-center">
+      <%= f.submit "Vote", :class => 'btn btn-primary btn-block btn-sm' %>
+    </div>
+  </div>
+  </div>
+  <% end %>
+<% end %>
