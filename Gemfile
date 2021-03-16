@@ -20,6 +20,7 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler'
 
 gem 'ahoy_matey'
+gem 'blazer'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
