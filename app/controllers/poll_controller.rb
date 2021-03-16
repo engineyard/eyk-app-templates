@@ -3,7 +3,12 @@ class PollController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @the_user = current_user.email 
+        # current_user is a helper added to controllers by Devise
+        # It returns the user model object
+        @user_email = current_user.email 
+
+        # Add an event for this page view
+        ahoy.track "ViewHomePage", user_email: @user_email
 
         @poll = Poll.find(1)
         if params["answer"]

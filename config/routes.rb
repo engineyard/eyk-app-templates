@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   get 'poll/report'
 
   mount Sidekiq::Web => '/sidekiq'
+
+  mount Blazer::Engine, at: "blazer"
 end
