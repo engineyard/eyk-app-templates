@@ -7,8 +7,6 @@ class PollController < ApplicationController
         # It returns the user model object
         @user_email = current_user.email 
 
-        # Add an event for this page view
-        ahoy.track "ViewHomePage", user_email: @user_email
 
         @poll = Poll.find(1)
         if params["answer"]
@@ -16,6 +14,11 @@ class PollController < ApplicationController
             choice = Answer.find_by(item: @answer.choice)
             choice.count = choice.count + 1
             choice.save
+
+            # Add an event for this page view
+            ahoy.track "PollSubmit", user_email: @user_email
+        else
+            ahoy.track "ViewHomePage", user_email: @user_email
         end
         @answers = Answer.all
     end

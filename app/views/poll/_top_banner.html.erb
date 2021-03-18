@@ -1,8 +1,11 @@
 <div class="row">
- <div class="col-md-6 align-items-center">
+ <div class="col-md-4 align-items-center">
   <h5>Hello <%= @user_email %></h5>
  </div>
- <div class="col-md-6">
+ <div class="col-md-4">
   <h5>Entertainment News</h5>
+ </div>
+ <div class="col-md-4 float-right" style="padding-top: 5px">
+  <%= link_to "logout", destroy_user_session_path, method: :delete  %>
  </div>
 </div>
