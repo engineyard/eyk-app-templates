@@ -1,5 +1,6 @@
 FROM gitpod/workspace-full-vnc
 
+WORKDIR /usr/local/bin
 CMD curl -ssl https://eyk-assets.ey.io/eyk/eyk-installer.sh | bash
 
 USER gitpod
