@@ -1,0 +1,16 @@
+netflix:
+  poll_id: 1
+  item: Netflix
+  count: 0
+gaming:
+  poll_id: 1
+  item: Gaming
+  count: 0
+dining:
+  poll_id: 1
+  item: Dining
+  count: 0
+nightclub:
+  poll_id: 1
+  item: NightClub
+  count: 0
