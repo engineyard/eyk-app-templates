@@ -16,6 +16,12 @@ module Blog
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :sidekiq 
+
+    # application.rb is a good place to do this, along with all the other railties.
+    # Don't require the railtie in environments that don't bundle the appmap gem.
+    require 'appmap/railtie' if defined?(AppMap)
+
+    config.appmap.enabled = true if ENV['APPMAP_RECORD']
   end
 end

@@ -1,0 +1,9 @@
+name: eyk-app-templates
+packages:
+- path: app/controllers
+- path: app/models
+- path: app/jobs
+- path: app/helpers
+- gem: activerecord
+- gem: devise
+- gem: sqlite3
