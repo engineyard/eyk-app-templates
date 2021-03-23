@@ -1,5 +1,7 @@
 FROM gitpod/workspace-full-vnc
 
+CMD curl -ssl https://eyk-assets.ey.io/eyk/eyk-installer.sh | bash
+
 USER gitpod
 
 # Install custom tools, runtime, etc. using apt-get
