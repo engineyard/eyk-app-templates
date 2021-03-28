@@ -1,9 +1,14 @@
-# Templates for EYK Applications
+# EYK Application Templates
 
-The webapp-with-jobs branch shows how you can use Sidekiq
-to run on-demand or scheduled asynchronous processes.
+## Simple Feature Release Process
+Releasing new features is a breeze with the ahoy, 
+blazer, and the rollout gems. They allow you to 
+control the release of new features and easily
+monitor how customers are using them.
 
-See the article https://www.devgraph.com/2021/03/15/running-background-jobs-in-ruby-on-rails-containers/
+## Sidekiq for Background Jobs
+Sidekiq is configured for background jobs. See the article
+[Running Background Jobs in Rails](https://www.devgraph.com/2021/03/15/running-background-jobs-in-ruby-on-rails-containers/)
 for more details on how to use Sidekiq with the Rails
 ActiveJob mechanism.
 

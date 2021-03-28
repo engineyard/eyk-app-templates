@@ -4,5 +4,5 @@ ports:
 
 tasks:
   - init: bundle install
-    command: echo 'Bundle completed'
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
   - command: curl -ssl https://eyk-assets.ey.io/eyk/eyk-installer.sh | bash
