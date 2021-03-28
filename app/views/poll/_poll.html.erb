@@ -9,12 +9,15 @@
             Overall results:<br/>
         </h3>
     </div>
+
     <% if @message %>
         <span style="font-weight: bold;"><%= sanitize @message %></span>
     <% end %>
+
     <% if @reward %>
         <%= render "rewards" %>
     <% else %>
+
         <div class="panel-body">
             <ul class="list-group">
                 <% @answers.each do |answer| %>
