@@ -1,0 +1,26 @@
+<%= form_for @reward, url: '/poll/index' do |f| %>
+    <%= f.hidden_field :initial_choice %>
+    <div class="panel-body">
+        <span style="font-weight: bold;">Would you like the chance to earn rewards points?</span>
+        <br/><br>
+        Before we display the results, you can earn points by selecting which answer
+        is most popular?
+        <br/><br>
+        <span style="font-weight: bold;">Select below for your chance to win!</span><br/><br/>
+        <ul class="list-group">
+            <% @answers.each do |answer| %>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <label>
+                    <%= f.radio_button :reward_choice, answer.item %> 
+                    <%= answer.item %>
+                  </label>
+                </div>
+              </li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="panel-footer text-center">
+      <%= f.submit "Select the Most Popular", :class => 'btn btn-primary btn-block btn-sm' %>
+    </div>
+<% end %>

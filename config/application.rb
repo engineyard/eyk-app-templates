@@ -18,10 +18,25 @@ module Blog
 
     config.active_job.queue_adapter = :sidekiq 
 
+    # AppMap
+    #
     # application.rb is a good place to do this, along with all the other railties.
     # Don't require the railtie in environments that don't bundle the appmap gem.
     require 'appmap/railtie' if defined?(AppMap)
-
     config.appmap.enabled = true if ENV['APPMAP_RECORD']
+
+    # Rollout
+    #
+    unless Rails.env.production?
+      # Mock redis in non-production environments
+      $redis = MockRedis.new
+    else 
+      # Only use actual Redis in production
+      $redis = Redis.new
+    end
+    $rollout = Rollout.new($redis, logging: { history_length: 100, global: true })
+    Rollout::UI.configure do
+      instance { $rollout }
+    end
   end
 end

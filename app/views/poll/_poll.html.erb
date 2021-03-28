@@ -1,6 +1,5 @@
-<script>
-ahoy.track("PollView", {language: "JavaScript"});
-</script>
+
+
 <% if @answer %>
   <div class="col-md-3" style="padding-top: 10px">
   <div class="panel panel-primary">
@@ -10,18 +9,25 @@ ahoy.track("PollView", {language: "JavaScript"});
             Overall results:<br/>
         </h3>
     </div>
-    <div class="panel-body">
-        <ul class="list-group">
-            <% @answers.each do |answer| %>
-              <li class="list-group-item">
-                <div>
-                  <label><%=answer.item.rjust(10, ' ')%>: <%=answer.count%></label>
-                </div>
-              </li>
-            <% end %>
-        </ul>
-    </div>
-    <div class="panel-footer text-center">Thank you for participating!</div>
+    <% if @message %>
+        <span style="font-weight: bold;"><%= sanitize @message %></span>
+    <% end %>
+    <% if @reward %>
+        <%= render "rewards" %>
+    <% else %>
+        <div class="panel-body">
+            <ul class="list-group">
+                <% @answers.each do |answer| %>
+                  <li class="list-group-item">
+                    <div>
+                      <label><%=answer.item.rjust(10, ' ')%>: <%=answer.count%></label>
+                    </div>
+                  </li>
+                <% end %>
+            </ul>
+        </div>
+        <div class="panel-footer text-center">Thank you for participating!</div>
+    <% end %>
   </div>
   </div>
 
@@ -29,6 +35,9 @@ ahoy.track("PollView", {language: "JavaScript"});
      # No selection was made, display the form
      @answer = Answer.new 
 %>
+<script>
+ahoy.track("PollView", {language: "JavaScript"});
+</script>
 <%= form_for @answer, url: '/poll/index' do |f| %>
   <div class="col-md-3" style="padding-top: 10px">
   <div class="panel panel-primary">

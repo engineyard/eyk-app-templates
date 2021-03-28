@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   get 'poll/report'
 
-  mount Sidekiq::Web => '/sidekiq'
+  post 'poll/reward'
 
+  mount Sidekiq::Web => '/sidekiq'
   mount Blazer::Engine, at: "blazer"
+  mount Rollout::UI::Web.new => '/admin/rollout'
 end
