@@ -3,6 +3,5 @@ ports:
     onOpen: open-preview
 
 tasks:
-  - init: bundle install
-    command: bundle exec rails server -b 0.0.0.0 -p 3000
+  - command: bundle install && bundle exec rails server -b 0.0.0.0 -p 3000
   - command: curl -ssl https://eyk-assets.ey.io/eyk/eyk-installer.sh | bash
