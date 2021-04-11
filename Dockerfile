@@ -30,7 +30,8 @@ ARG db_yml_password
 ARG db_yml_host
 
 # Precompile Rails assets
-RUN RAILS_MASTER_KEY=${RAILS_MASTER_KEY} bundle exec rake assets:precompile
+# Not used on placeholder app
+# RUN RAILS_MASTER_KEY=${RAILS_MASTER_KEY} bundle exec rake assets:precompile
 
 EXPOSE 5000
 
