@@ -33,7 +33,7 @@ ARG db_yml_host
 # Not used on placeholder app
 # RUN RAILS_MASTER_KEY=${RAILS_MASTER_KEY} bundle exec rake assets:precompile
 
-EXPOSE 5000
+EXPOSE 3000
 
 # Required by convention but essentially ignored by EYK as the Procfile
 # specifies what processes you want to run on this container image.
