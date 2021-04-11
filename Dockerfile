@@ -29,23 +29,9 @@ ARG db_yml_username
 ARG db_yml_password
 ARG db_yml_host
 
-# Uncomment this line if you want EYK to generate your Postgres
-# database yaml config file
-#RUN erb -T - ./.eyk/config/database.yml.erb > config/database.yml
-
-# Uncomment this line if you want EYK to generate your Sidekiq
-# yaml config file
-#RUN erb -T - ./.eyk/config/sidekiq.yml.erb > config/sidekiq.yml
-
-# Make the migration script runable
-RUN chmod +x ./.eyk/migrations/db-migrate.sh
-
 # Precompile Rails assets
 RUN RAILS_MASTER_KEY=${RAILS_MASTER_KEY} bundle exec rake assets:precompile
 
-# Expose port 5000 to the Docker host, so we can access it
-# from the outside. This is the same as the one set with
-# "eyk config:set PORT 5000"
 EXPOSE 5000
 
 # Required by convention but essentially ignored by EYK as the Procfile
