@@ -1,0 +1,47 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Instant Poll Application",
+  "steps": [
+    {
+      "file": "app/controllers/poll_controller.rb",
+      "description": "The Instant Poll application is fairly straightforward. The PollController and corresponding view are the main components.\n\nDevise is used for authentication, and the page requires the user to signup and authenticate.",
+      "line": 3
+    },
+    {
+      "file": "app/controllers/poll_controller.rb",
+      "description": "There are two modes for the controller:\n\n1. The user submitted their vote (params[\"answer\"])\n2. Initial display of the poll form with a submit button.",
+      "line": 12
+    },
+    {
+      "file": "app/controllers/poll_controller.rb",
+      "description": "Ahoy is used to track user events",
+      "line": 18
+    },
+    {
+      "file": "app/views/poll/index.html.erb",
+      "description": "The Left-Hand Side (LHS) column is where the poll is located.",
+      "line": 8
+    },
+    {
+      "file": "app/views/poll/_lhs_column.html.erb",
+      "description": "Here we render the poll partial page.",
+      "line": 6
+    },
+    {
+      "file": "app/views/poll/_poll.html.erb",
+      "description": "Similar to the controller, there are two modes to this page:\n1. The initial view of the poll\n2. Show user their choice and overall results after a submission",
+      "line": 3,
+      "selection": {
+        "start": {
+          "line": 3,
+          "character": 1
+        },
+        "end": {
+          "line": 4,
+          "character": 1
+        }
+      }
+    }
+  ],
+  "ref": "webapp-features"
+}
