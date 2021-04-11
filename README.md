@@ -4,6 +4,11 @@ This project provides templates that are starting points for Rails applications.
 Choose the branch that most closely meets your requirements and use that to quickly
 get started developing and deploying Rails applications on EYK.
 
+## main branch
+A mostly empty branch that contains a Dockerfile and Procfile you can use to
+quickly get started with your Rails app. Simply copy your Rails files into
+a clone of this project to get started deploying your app to EYK.
+
 ## webapp branch
 This is the basis for all the branches. It is a simple instant poll web application
 that uses a sqlite database in development and a MySQL database in production.
