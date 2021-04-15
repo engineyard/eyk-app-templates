@@ -12,8 +12,8 @@
         </h3>
     </div>
     <div id="poll_message">&nbsp;</div>
-    <%= form_for @answer, url: '/poll/submit' do |f| %>
-      <div id="poll_body" class="panel-body">
+    <div id="poll_body" class="panel-body">
+      <%= form_for @answer, url: '/poll/submit' do |f| %>
         <ul class="list-group">
           <% @answers.each do |answer| %>
             <li class="list-group-item">
@@ -26,13 +26,10 @@
             </li>
           <% end %>
         </ul>
-      </div>
-      <div id="poll_footer">
-        <div class="panel-footer text-center">
-          <%= f.submit "Vote", :class => 'btn btn-primary btn-block btn-sm' %>
-        </div>
-      </div>
-    <% end %>
+        <%= f.submit "Vote", :class => 'btn btn-primary btn-block btn-sm' %>
+      <% end %>
+    </div>
+    <div id="poll_footer">&nbsp;</div>      
   </div>
   </div>
 

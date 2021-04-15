@@ -6,9 +6,8 @@ Rails.application.routes.draw do
   get 'poll/index'
 
   post 'poll/submit'
-
+  post 'poll/rewards'
   get 'poll/report'
-  post 'poll/reward'
 
   post 'comment/submit'
 

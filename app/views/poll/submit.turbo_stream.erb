@@ -10,22 +10,17 @@
 <% end %>  
 
 <%= turbo_stream.replace("poll_body") do %>
-    <% if @reward %>
-        <%= render "rewards" %>
-    <% else %>
-  
-        <div class="panel-body">
-            <ul class="list-group">
-                <% @answers.each do |answer| %>
-                <li class="list-group-item">
-                    <div>
-                    <label><%=answer.item.rjust(10, ' ')%>: <%=answer.count%></label>
-                    </div>
-                </li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
+    <div class="panel-body">
+        <ul class="list-group">
+            <% @answers.each do |answer| %>
+            <li class="list-group-item">
+                <div>
+                <label><%=answer.item.rjust(10, ' ')%>: <%=answer.count%></label>
+                </div>
+            </li>
+            <% end %>
+        </ul>
+    </div>
 <% end %>
 
 <%= turbo_stream.replace("poll_footer") do %>
