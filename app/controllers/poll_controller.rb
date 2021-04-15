@@ -26,23 +26,27 @@ class PollController < ApplicationController
                 @message = "#{@message}Unfortunately, it turns out the most popular choice is '#{most_popular.item}'"
             end
             
-        elsif params["answer"]
-            @answer = Answer.new(params.require(:answer).permit(:choice))
-            choice = Answer.find_by(item: @answer.choice)
-            choice.count = choice.count + 1
-            choice.save
-
-            # Add an event for this page view
-            ahoy.track "PollSubmit", user_email: @user_email
-
-            # New feature to prompt user to earn rewards
-            # Only use if the feature is turned on for the current user
-            if $rollout.active?(:rewards, @user) 
-                @reward = Reward.new(user_id: @user.id, initial_choice: @answer.choice)
-            end
         else
             ahoy.track "ViewHomePage", user_email: @user_email
         end
+        @answers = Answer.all
+    end
+
+    def submit
+        @answer = Answer.new(params.require(:answer).permit(:choice))
+        choice = Answer.find_by(item: @answer.choice)
+        choice.count = choice.count + 1
+        choice.save
+
+        # Add an event for this page view
+        ahoy.track "PollSubmit", user_email: @user_email
+
+        # New feature to prompt user to earn rewards
+        # Only use if the feature is turned on for the current user
+        if $rollout.active?(:rewards, @user) 
+            @reward = Reward.new(user_id: @user.id, initial_choice: @answer.choice)
+        end
+
         @answers = Answer.all
     end
 

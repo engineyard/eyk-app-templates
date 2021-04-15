@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
   root 'poll#index'
   get 'poll/index'
-  post 'poll/index'
+
+  post 'poll/submit'
 
   get 'poll/report'
-
   post 'poll/reward'
 
   mount Blazer::Engine, at: "blazer"

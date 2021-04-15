@@ -1,0 +1,33 @@
+<%= turbo_stream.replace("poll_title") do %>
+    &nbsp;You chose <span style="font-weight: bold"><%=@answer.choice%></span>.
+    Overall results:<br/>
+<% end %>
+
+<%= turbo_stream.replace("poll_message") do %>
+    <% if @message %>
+        <span style="font-weight: bold;"><%= sanitize @message %></span>
+    <% end %>
+<% end %>  
+
+<%= turbo_stream.replace("poll_body") do %>
+    <% if @reward %>
+        <%= render "rewards" %>
+    <% else %>
+  
+        <div class="panel-body">
+            <ul class="list-group">
+                <% @answers.each do |answer| %>
+                <li class="list-group-item">
+                    <div>
+                    <label><%=answer.item.rjust(10, ' ')%>: <%=answer.count%></label>
+                    </div>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+<% end %>
+
+<%= turbo_stream.replace("poll_footer") do %>
+    <div class="panel-footer text-center">Thank you for participating!</div>
+<% end %>
