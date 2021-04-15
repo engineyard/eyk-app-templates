@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_28_183051) do
+ActiveRecord::Schema.define(version: 2021_04_15_130657) do
 
   create_table "ahoy_events", force: :cascade do |t|
     t.integer "visit_id"
@@ -113,6 +113,14 @@ ActiveRecord::Schema.define(version: 2021_03_28_183051) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_blazer_queries_on_creator_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "author_id"
+    t.string "comment_text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "polls", force: :cascade do |t|

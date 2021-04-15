@@ -1,0 +1,27 @@
+<%= turbo_frame_tag("article_comments") do %>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+       <h3 class="panel-title">Comments</h3>
+    </div>
+    <div class="panel-body">
+        <%= form_for @comment, url: '/comment/submit' do |f| %>
+        <%= f.label :comment_text, "Your comment:" %>
+        <%= f.text_area :comment_text, size: "80x5" %>
+        <%= f.hidden_field :article_id %>
+        <%= f.hidden_field :author_id %>
+        <br/><br/>
+        <%= f.submit "Comment", :class => 'btn btn-primary btn-block btn-sm' %>
+
+        <div id="poll_body" class="panel-body">
+            <ul class="list-group">
+            <% @all_comments.each do |comment| %>
+                <li class="list-group-item"><%= comment.comment_text %></li>
+            <% end %>
+            </ul>
+        </div>
+        <% end %>
+    </div>
+  </div>
+<% end %>
+
+	

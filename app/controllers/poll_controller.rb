@@ -29,7 +29,10 @@ class PollController < ApplicationController
         else
             ahoy.track "ViewHomePage", user_email: @user_email
         end
+
         @answers = Answer.all
+        @comment = Comment.new(author_id: @user.id, article_id: 1)
+        @all_comments = Comment.where(article_id: 1)
     end
 
     def submit

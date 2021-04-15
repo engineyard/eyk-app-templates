@@ -7,7 +7,10 @@
 
 <%= render "lhs_column" %>
 
-<%= render "article" %>
+<div class="col-md-8 blog-main">
+  <%= render "article" %>
+  <%= render "/comment/view" %>
+</div>
 
 </div><!-- /.row -->
 </div><!-- main -->
