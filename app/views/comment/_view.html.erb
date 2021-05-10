@@ -4,6 +4,9 @@
        <h3 class="panel-title">Comments</h3>
     </div>
     <div class="panel-body">
+        <% if @message %>
+            <span style="color: blue"><%= @message %></span><br/><br/>
+        <% end %>
         <%= form_for @comment, url: '/comment/submit' do |f| %>
         <%= f.label :comment_text, "Your comment:" %>
         <%= f.text_area :comment_text, size: "80x5" %>

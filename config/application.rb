@@ -31,5 +31,6 @@ module Blog
       instance { $rollout }
     end
 
+    LightService::Configuration.logger = Logger.new(STDOUT)
   end
 end
