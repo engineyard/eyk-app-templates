@@ -37,6 +37,10 @@ class PollController < ApplicationController
             end 
         end
   
+        # Perform some additional work to simulate extra load
+        # for performance testing
+        do_extra_work
+
         response = {}
         response["number_of_responses"] = total_responses
         response["most_popular_response"] = most_popular_response
@@ -44,4 +48,21 @@ class PollController < ApplicationController
         response["answers"] = answer_data
         render :json => JSON[response]
     end 
+
+    def do_extra_work 
+        puts "Begin do extra work"
+        (1..2500).each do |n|
+            if is_prime(n)
+                puts "#{n} is a prime number"
+            end 
+        end
+        puts "Complete do extra work"
+    end 
+
+    def is_prime(num)
+        (2..(num - 1)).each do |n|
+          return false if num % n == 0
+        end
+        true
+    end
 end
